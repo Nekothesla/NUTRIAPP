@@ -1,0 +1,187 @@
+/* =============================================
+   NutriApp Global Styles — Glassmorphism Theme
+   ============================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/* ---- Reset ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  background: #0f0c29;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Angular Material Card overrides ---- */
+.mat-mdc-card {
+  background: rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3) !important;
+  color: white !important;
+}
+
+.mat-mdc-card-header {
+  padding-bottom: 0.5rem !important;
+}
+
+.mat-mdc-card-title {
+  color: white !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* ---- Form Field Global Overrides ---- */
+.mat-mdc-form-field {
+  width: 100%;
+  display: block;
+}
+
+.mdc-notched-outline__leading,
+.mdc-notched-outline__notch,
+.mdc-notched-outline__trailing {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  transition: border-color 0.3s ease;
+}
+
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+.mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-width: 2px !important;
+  border-color: #a78bfa !important;
+}
+
+.mat-mdc-form-field label {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.mat-mdc-form-field.mat-focused label {
+  color: #a78bfa !important;
+}
+
+.mat-mdc-form-field input,
+.mat-mdc-form-field .mat-mdc-select-value {
+  color: white !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500;
+  font-size: 1rem !important;
+}
+
+.mat-mdc-form-field mat-icon {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.mat-mdc-form-field.mat-focused mat-icon {
+  color: #a78bfa !important;
+}
+
+.mat-mdc-form-field .mat-mdc-select-arrow {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.mdc-text-field--outlined {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-radius: 8px !important;
+}
+
+.mdc-notched-outline__leading {
+  border-radius: 8px 0 0 8px !important;
+}
+
+.mdc-notched-outline__trailing {
+  border-radius: 0 8px 8px 0 !important;
+}
+
+/* ---- Snackbar ---- */
+.error-snack {
+  background: #7f1d1d !important;
+  color: #fca5a5 !important;
+}
+
+.success-snack {
+  background: #064e3b !important;
+  color: #6ee7b7 !important;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.8);
+}
+
+/* ---- Material Select panel ---- */
+.mat-mdc-select-panel {
+  background: #1e1b4b !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.mat-mdc-option {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.mat-mdc-option:hover {
+  background: rgba(124, 58, 237, 0.2) !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected {
+  color: #a78bfa !important;
+}
+
+/* ---- Mat Tabs ---- */
+mat-tab-group .mat-mdc-tab-body-wrapper {
+  padding-top: 0;
+}
+
+/* ---- Global number animations ---- */
+@keyframes count-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: count-up 0.4s ease forwards;
+}
+
+/* ---- Angular Material Toggle Button ---- */
+mat-button-toggle-group {
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 12px !important;
+}
+
+/* ---- Utility ---- */
+.text-gradient {
+  background: linear-gradient(135deg, #a78bfa, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
