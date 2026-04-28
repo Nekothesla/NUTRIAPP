@@ -40,16 +40,16 @@ Chart.register(...registerables);
           <mat-card-header>
             <mat-card-title class="card-title">Datos Corporales</mat-card-title>
           </mat-card-header>
-          <mat-card-content>
+          <mat-card-content class="form-card-content">
             <form [formGroup]="profileForm" (ngSubmit)="onSave()" class="profile-form">
               <div class="form-row">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" floatLabel="always">
                   <mat-label>Peso (kg)</mat-label>
                   <mat-icon matPrefix>monitor_weight</mat-icon>
                   <input matInput type="number" formControlName="peso" placeholder="70.5" />
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" floatLabel="always">
                   <mat-label>Talla (cm)</mat-label>
                   <mat-icon matPrefix>height</mat-icon>
                   <input matInput type="number" formControlName="talla" placeholder="175" />
@@ -57,13 +57,13 @@ Chart.register(...registerables);
               </div>
 
               <div class="form-row">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" floatLabel="always">
                   <mat-label>Edad (años)</mat-label>
                   <mat-icon matPrefix>cake</mat-icon>
                   <input matInput type="number" formControlName="edad" placeholder="25" />
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" floatLabel="always">
                   <mat-label>Sexo</mat-label>
                   <mat-icon matPrefix>wc</mat-icon>
                   <mat-select formControlName="sexo">
@@ -74,14 +74,14 @@ Chart.register(...registerables);
               </div>
 
               <div class="form-row">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" floatLabel="always">
                   <mat-label>% Masa Grasa</mat-label>
                   <mat-icon matPrefix>water_drop</mat-icon>
                   <input matInput type="number" formControlName="masa_grasa" placeholder="20" />
                   <span matSuffix>%</span>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" floatLabel="always">
                   <mat-label>% Masa Muscular</mat-label>
                   <mat-icon matPrefix>fitness_center</mat-icon>
                   <input matInput type="number" formControlName="masa_muscular" placeholder="45" />
@@ -90,7 +90,7 @@ Chart.register(...registerables);
               </div>
 
               <div class="form-row single">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" floatLabel="always">
                   <mat-label>Grasa Visceral (nivel)</mat-label>
                   <mat-icon matPrefix>analytics</mat-icon>
                   <input matInput type="number" formControlName="grasa_visceral" placeholder="5" />
@@ -163,13 +163,12 @@ Chart.register(...registerables);
       border-radius: 20px !important;
       box-shadow: 0 16px 48px rgba(0,0,0,0.3) !important;
     }
-    .card-title { color: white !important; font-size: 1rem !important; font-weight: 600 !important; }
+    .card-title { color: white !important; font-size: 1.1rem !important; font-weight: 600 !important; }
 
-    .profile-form { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 1rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-card-content { padding: 0.5rem 1rem 1rem !important; }
+    .profile-form { display: flex; flex-direction: column; gap: 1rem; padding-top: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
     .form-row.single { grid-template-columns: 1fr; }
-
-
 
     .save-btn {
       background: linear-gradient(135deg, #7c3aed, #06b6d4) !important;
