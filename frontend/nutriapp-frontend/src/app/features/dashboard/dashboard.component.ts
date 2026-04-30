@@ -41,6 +41,11 @@ import { AuthService } from '../../core/services/auth.service';
             <span>Calculadora</span>
             <div class="active-indicator"></div>
           </a>
+          <a class="nav-item" routerLink="diets" routerLinkActive="active">
+            <mat-icon>restaurant_menu</mat-icon>
+            <span>Dietas</span>
+            <div class="active-indicator"></div>
+          </a>
         </div>
 
         <div class="sidebar-footer">

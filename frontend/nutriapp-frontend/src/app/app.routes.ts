@@ -25,6 +25,11 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./features/calculator/calculator.component').then(m => m.CalculatorComponent),
             },
+            {
+                path: 'diets',
+                loadComponent: () =>
+                    import('./features/diets/diets.component').then(m => m.DietsComponent),
+            },
         ],
     },
     { path: '**', redirectTo: 'dashboard' },

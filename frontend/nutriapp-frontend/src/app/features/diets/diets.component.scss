@@ -1,0 +1,196 @@
+.diets-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.header-section {
+  h2 {
+    color: white;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+  }
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+  }
+}
+
+.search-section {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  mat-form-field {
+    flex: 1;
+  }
+
+  button {
+    height: 56px;
+    border-radius: 8px;
+    padding: 0 2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem;
+  color: white;
+}
+
+.results-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.recipe-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(124, 58, 237, 0.4);
+  }
+
+  .recipe-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .recipe-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    h3 {
+      color: white;
+      font-size: 1.2rem;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .source {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+
+      .tag {
+        background: rgba(124, 58, 237, 0.2);
+        color: #c4b5fd;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border: 1px solid rgba(124, 58, 237, 0.3);
+      }
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+      .stat {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        color: #e2e8f0;
+        font-size: 0.85rem;
+
+        mat-icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+          color: #06b6d4;
+        }
+      }
+    }
+  }
+
+  .view-btn {
+    width: 100%;
+    border-radius: 0 0 16px 16px;
+    background: rgba(124, 58, 237, 0.1);
+    color: #a78bfa;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 1rem;
+    
+    &:hover {
+      background: rgba(124, 58, 237, 0.3);
+      color: white;
+    }
+  }
+}
+
+/* Customizing Material Form Fields for Glass UI */
+::ng-deep {
+  .mat-mdc-text-field-wrapper {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-radius: 8px 8px 0 0;
+  }
+  .mat-mdc-form-field-focus-overlay {
+    background-color: transparent !important;
+  }
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+    border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+  }
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::after {
+    border-bottom-color: #06b6d4 !important;
+  }
+  .mat-mdc-form-field-has-icon-prefix .mat-mdc-text-field-wrapper {
+    padding-left: 12px !important;
+  }
+  .mat-mdc-select-value-text {
+    color: white !important;
+  }
+  .mat-mdc-form-field-flex {
+    align-items: center;
+  }
+}
