@@ -1,4 +1,4 @@
-import { Component, signal, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, signal, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -223,9 +223,9 @@ Chart.register(...registerables);
     .modo-section { display: flex; flex-direction: column; gap: 0.5rem; }
     .modo-label { color: rgba(255,255,255,0.6); font-size: 0.8rem; margin: 0; }
     ::ng-deep .modo-group { width: 100%; display: flex !important; background: rgba(255,255,255,0.05) !important; border-radius: 12px !important; }
-    ::ng-deep .modo-group .mat-button-toggle { flex: 1; color: rgba(255,255,255,0.5) !important; border: none !important; }
+    ::ng-deep .modo-group .mat-button-toggle { flex: 1; color: rgba(255,255,255,0.5) !important; background: transparent !important; border: none !important; }
     ::ng-deep .modo-group .mat-button-toggle-checked { background: rgba(124,58,237,0.4) !important; color: #c4b5fd !important; border-radius: 10px !important; }
-    ::ng-deep .modo-group .mat-button-toggle-label-content { display: flex; align-items: center; gap: 4px; font-size: 0.8rem; }
+    ::ng-deep .modo-group .mat-button-toggle-label-content { display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 0.8rem; }
 
     .ratio-preview { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 12px; }
     .ratio-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: rgba(255,255,255,0.7); }
@@ -293,7 +293,7 @@ Chart.register(...registerables);
     .empty-content p { margin: 0; font-size: 0.85rem; }
   `],
 })
-export class CalculatorComponent implements AfterViewInit {
+export class CalculatorComponent implements AfterViewInit, OnInit {
     @ViewChild('macrosChart') macrosChartRef!: ElementRef<HTMLCanvasElement>;
     private chart?: Chart;
 
@@ -325,7 +325,28 @@ export class CalculatorComponent implements AfterViewInit {
 
         // Update preview whenever modo changes
         this.calcForm.get('modo')!.valueChanges.subscribe(m => {
-            if (m) this.modoRatios.set(this.getRatios(m));
+            if (m) {
+                this.modoRatios.set(this.getRatios(m));
+                if (this.result() && this.calcForm.valid) {
+                    this.onCalculate();
+                }
+            }
+        });
+    }
+
+    ngOnInit(): void {
+        this.profileService.getProfile().subscribe({
+            next: (profile) => {
+                if (profile) {
+                    this.calcForm.patchValue({
+                        peso: profile.peso,
+                        talla: profile.talla,
+                        edad: profile.edad,
+                        sexo: profile.sexo || 'masculino'
+                    });
+                }
+            },
+            error: () => {} // ignore error if no profile
         });
     }
 
@@ -366,7 +387,7 @@ export class CalculatorComponent implements AfterViewInit {
             data: {
                 labels: ['Carbohidratos', 'Proteínas', 'Grasas'],
                 datasets: [{
-                    data: [res.macros.carbohidratos_g, res.macros.proteinas_g, res.macros.grasas_g],
+                    data: [res.macros.carbohidratos_pct, res.macros.proteinas_pct, res.macros.grasas_pct],
                     backgroundColor: ['#818cf8', '#34d399', '#f472b6'],
                     borderColor: 'rgba(255,255,255,0.05)',
                     borderWidth: 2,
@@ -379,7 +400,11 @@ export class CalculatorComponent implements AfterViewInit {
                     legend: { display: false },
                     tooltip: {
                         callbacks: {
-                            label: (ctx) => ` ${ctx.label}: ${ctx.raw}g`,
+                            label: (ctx) => {
+                                const index = ctx.dataIndex;
+                                const grams = [res.macros.carbohidratos_g, res.macros.proteinas_g, res.macros.grasas_g][index];
+                                return ` ${ctx.label}: ${ctx.raw}% (${grams}g)`;
+                            }
                         },
                     },
                 },
