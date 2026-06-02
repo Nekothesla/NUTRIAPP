@@ -1,3 +1,5 @@
+import json
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -10,6 +12,16 @@ class Settings(BaseSettings):
         "http://localhost:4200",
         "http://127.0.0.1:4200",
     ]
+
+    @field_validator("ALLOWED_ORIGINS", mode="before")
+    @classmethod
+    def parse_allowed_origins(cls, v):
+        if isinstance(v, str):
+            try:
+                return json.loads(v)
+            except (json.JSONDecodeError, ValueError):
+                return [origin.strip() for origin in v.split(",")]
+        return v
 
     model_config = SettingsConfigDict(env_file=".env")
 

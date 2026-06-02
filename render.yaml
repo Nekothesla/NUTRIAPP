@@ -21,7 +21,7 @@ services:
           name: nutriapp-db
           property: connectionString
       - key: ALLOWED_ORIGINS
-        value: '["https://nutriapp-frontend.onrender.com","http://localhost:4200"]'
+        value: "https://nutriapp-frontend.onrender.com,http://localhost:4200"
       - key: PYTHON_VERSION
         value: "3.11.0"
 
