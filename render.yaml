@@ -1,0 +1,40 @@
+databases:
+  - name: nutriapp-db
+    plan: free
+    databaseName: nutriapp
+    user: nutriapp
+
+services:
+  # ── Backend (FastAPI) ──────────────────────────────────────────────────────
+  - type: web
+    name: nutriapp-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: nutriapp-db
+          property: connectionString
+      - key: ALLOWED_ORIGINS
+        value: '["https://nutriapp-frontend.onrender.com","http://localhost:4200"]'
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+
+  # ── Frontend (Angular SPA) ─────────────────────────────────────────────────
+  - type: static
+    name: nutriapp-frontend
+    rootDir: frontend/nutriapp-frontend
+    buildCommand: bash build.sh
+    staticPublishPath: dist/nutriapp-frontend/browser
+    envVars:
+      - key: API_URL
+        value: https://nutriapp-backend.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
