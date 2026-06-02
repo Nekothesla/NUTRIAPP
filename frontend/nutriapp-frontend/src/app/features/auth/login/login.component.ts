@@ -44,7 +44,7 @@ import { AuthService } from '../../../core/services/auth.service';
             <!-- LOGIN TAB -->
             <mat-tab label="Iniciar Sesión">
               <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="auth-form">
-                <mat-form-field appearance="outline" class="full-width">
+                <mat-form-field appearance="outline" floatLabel="always" class="full-width">
                   <mat-label>Usuario</mat-label>
                   <mat-icon matPrefix>person</mat-icon>
                   <input matInput formControlName="username" placeholder="Tu nombre de usuario" />
@@ -53,10 +53,10 @@ import { AuthService } from '../../../core/services/auth.service';
                   </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="full-width">
+                <mat-form-field appearance="outline" floatLabel="always" class="full-width">
                   <mat-label>Contraseña</mat-label>
                   <mat-icon matPrefix>lock</mat-icon>
-                  <input matInput [type]="showPass() ? 'text' : 'password'" formControlName="password" />
+                  <input matInput [type]="showPass() ? 'text' : 'password'" formControlName="password" placeholder="Tu contraseña" />
                   <button mat-icon-button matSuffix type="button" (click)="showPass.set(!showPass())">
                     <mat-icon>{{ showPass() ? 'visibility_off' : 'visibility' }}</mat-icon>
                   </button>
@@ -76,22 +76,22 @@ import { AuthService } from '../../../core/services/auth.service';
             <!-- REGISTER TAB -->
             <mat-tab label="Registrarse">
               <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="auth-form">
-                <mat-form-field appearance="outline" class="full-width">
+                <mat-form-field appearance="outline" floatLabel="always" class="full-width">
                   <mat-label>Usuario</mat-label>
                   <mat-icon matPrefix>person</mat-icon>
                   <input matInput formControlName="username" placeholder="Elige un usuario" />
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="full-width">
+                <mat-form-field appearance="outline" floatLabel="always" class="full-width">
                   <mat-label>Email</mat-label>
                   <mat-icon matPrefix>email</mat-icon>
                   <input matInput formControlName="email" type="email" placeholder="tu@email.com" />
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" class="full-width">
+                <mat-form-field appearance="outline" floatLabel="always" class="full-width">
                   <mat-label>Contraseña</mat-label>
                   <mat-icon matPrefix>lock</mat-icon>
-                  <input matInput [type]="showPass() ? 'text' : 'password'" formControlName="password" />
+                  <input matInput [type]="showPass() ? 'text' : 'password'" formControlName="password" placeholder="Mínimo 6 caracteres" />
                   <button mat-icon-button matSuffix type="button" (click)="showPass.set(!showPass())">
                     <mat-icon>{{ showPass() ? 'visibility_off' : 'visibility' }}</mat-icon>
                   </button>
