@@ -127,7 +127,7 @@ Chart.register(...registerables);
               <mat-card-title class="card-title">Composición Corporal</mat-card-title>
             </mat-card-header>
             <mat-card-content class="chart-content">
-              <canvas #bodyChart></canvas>
+              <canvas #bodyChart [style.display]="hasChartData() ? 'block' : 'none'"></canvas>
               <p *ngIf="!hasChartData()" class="no-data">
                 <mat-icon>info</mat-icon>
                 Guarda tu perfil para ver la gráfica
@@ -203,8 +203,8 @@ Chart.register(...registerables);
     .stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
 
     .chart-card .mat-mdc-card-content { padding: 0 1rem 1rem !important; }
-    .chart-content { position: relative; height: 240px; display: flex; align-items: center; justify-content: center; }
-    .chart-content canvas { max-height: 220px; }
+    .chart-content { position: relative; height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+    .chart-content canvas { max-height: 220px; max-width: 100%; }
     .no-data {
       display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
       color: rgba(255,255,255,0.35); font-size: 0.85rem; text-align: center;
