@@ -34,7 +34,7 @@ services:
     staticPublishPath: dist/nutriapp-frontend/browser
     envVars:
       - key: API_URL
-        value: https://nutriapp-backend.onrender.com
+        value: https://nutriapp-backend-jzf5.onrender.com
     routes:
       - type: rewrite
         source: /*
